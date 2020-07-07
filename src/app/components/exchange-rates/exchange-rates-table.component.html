@@ -1,0 +1,33 @@
+<div *ngIf="data" class="mb-5">
+	<h2>{{data.base}}</h2>
+	<h5>Date: {{data.date | date: 'd MMMM yyyy'}}</h5>
+	<div class="table-responsive-sm">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Currency</th>
+					<th scope="col">Value</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let rate of data.rates">
+					<td>
+						{{rate.currency}}
+					</td>
+					<td class="text-right">
+						{{rate.value | number: '1.6-6'}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="d-flex justify-content-center align-items-center">
+		<button class="btn m-2" (click)="previousPage()" [disabled]="currentPage === 1"><</button>
+    	<span class="m-2">Page {{currentPage}}</span>
+		<button class="btn m-2" (click)="nextPage()" [disabled]="currentPage === data.pagesCount">></button>
+	</div>
+	<div class="row">
+		<button class="btn btn-secondary m-2" (click)="refresh()">Refresh</button>
+	</div>
+</div>
